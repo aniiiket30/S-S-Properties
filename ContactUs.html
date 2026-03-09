@@ -1038,12 +1038,16 @@
     </div>
 
     <script>
-        // IMPORTANT SECURITY NOTE:
-        // This API key is exposed for demonstration purposes only.
-        // In production, you should NEVER expose API keys in client-side code.
-        // Create a backend proxy server instead.
+        // =============================================
+        // IMPORTANT: SETUP INSTRUCTIONS
+        // =============================================
+        // 1. Get your OpenAI API key from: https://platform.openai.com/api-keys
+        // 2. Replace the empty string below with your actual API key
+        // 3. For production, NEVER expose API keys in client-side code
+        //    Use a backend proxy server instead
+        // =============================================
         
-        const OPENAI_API_KEY = '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';
+        const OPENAI_API_KEY = ''; // 👈 Add your OpenAI API key here
         
         const CHATBOT_CONFIG = {
             apiKey: OPENAI_API_KEY,
@@ -1220,6 +1224,12 @@
 
         // Process message with OpenAI API
         async function processWithAI(message) {
+            // If no API key is provided, use demo responses
+            if (!CHATBOT_CONFIG.apiKey) {
+                console.log('No API key provided, using demo responses');
+                return getDemoResponse(message);
+            }
+
             try {
                 // Add timestamp to message for context
                 const timestampedMessage = `${message} (Current date: ${new Date().toLocaleDateString('en-IN')})`;
@@ -1283,7 +1293,7 @@
             }
         }
 
-        // Fallback demo responses (used if API fails)
+        // Fallback demo responses (used if API fails or no API key)
         function getDemoResponse(message) {
             const lowerMessage = message.toLowerCase();
             
