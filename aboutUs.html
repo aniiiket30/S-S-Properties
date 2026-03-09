@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us | S&SProperties</title>
+
+<style>
+:root{
+  --primary:#1e88ff;
+  --bg:#f6f8fc;
+  --text:#222;
+  --muted:#666;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Segoe UI, sans-serif;
+}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+}
+
+/* ===== NAVBAR ===== */
+header{
+  background:#fff;
+  box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+
+.navbar{
+  max-width:1200px;
+  margin:auto;
+  padding:14px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.logo{
+  font-size:22px;
+  font-weight:700;
+  color:var(--primary);
+}
+
+nav ul{
+  list-style:none;
+  display:flex;
+  gap:25px;
+}
+
+nav a{
+  text-decoration:none;
+  color:#444;
+  font-weight:500;
+}
+
+nav a.active{
+  color:var(--primary);
+}
+
+.auth a{
+  padding:6px 14px;
+  border-radius:6px;
+  text-decoration:none;
+  font-weight:600;
+}
+
+.login{
+  border:1px solid var(--primary);
+  color:var(--primary);
+}
+
+.register{
+  background:var(--primary);
+  color:#fff;
+}
+
+/* ===== CONTENT ===== */
+.section{
+  text-align:center;
+  padding:60px 20px;
+}
+
+.section h1{
+  font-size:32px;
+  margin-bottom:15px;
+}
+
+.section p{
+  max-width:800px;
+  margin:auto;
+  font-size:14px;
+  color:var(--muted);
+  line-height:1.6;
+}
+
+.container{
+  max-width:1200px;
+  margin:auto;
+}
+
+/* ===== MISSION VISION ===== */
+.boxes{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:30px;
+  margin-top:40px;
+}
+
+.box{
+  background:#fff;
+  padding:30px;
+  border-radius:12px;
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
+}
+
+.box h3{
+  color:var(--primary);
+  margin-bottom:10px;
+}
+
+/* ===== TEAM ===== */
+.team{
+  display:flex;
+  justify-content:center;
+  gap:30px;
+  margin-top:30px;
+  flex-wrap:wrap;
+}
+
+.team img{
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  object-fit:cover;
+  box-shadow:0 4px 10px rgba(0,0,0,.15);
+}
+
+/* ===== CTA ===== */
+.cta{
+  margin-top:40px;
+}
+
+.cta h3{
+  margin-bottom:10px;
+}
+
+.cta p{
+  font-size:14px;
+}
+
+.cta a{
+  display:inline-block;
+  margin-top:15px;
+  background:var(--primary);
+  color:#fff;
+  padding:10px 22px;
+  border-radius:6px;
+  text-decoration:none;
+  font-weight:600;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="navbar">
+    <div class="logo">S&SProperties</div>
+
+    <nav>
+      <ul>
+        <li><a href="Home.html">Home</a></li>
+        <li><a href="aboutUs.html" class="active">AboutUs</a></li>
+      </ul>
+    </nav>
+
+    <div class="auth">
+      
+    </div>
+  </div>
+</header>
+
+<!-- WELCOME -->
+<section class="section">
+  <h1>Welcome to S&SProperties</h1>
+  <p>
+    At S&SProperties, we connect people with their dream homes, investment properties,
+    and commercial spaces. With over a decade of experience, our team offers personalized
+    service and deep local knowledge to help you make the right real estate decisions.
+  </p>
+
+  <div class="container">
+    <div class="boxes">
+      <div class="box">
+        <h3>Our Mission</h3>
+        <p>
+          To deliver transparent, trustworthy, and tailored real estate solutions that
+          empower our clients and transform communities.
+        </p>
+      </div>
+
+      <div class="box">
+        <h3>Our Vision</h3>
+        <p>
+          To be India's most trusted real estate agency by providing unmatched service,
+          innovation, and expertise in the property market.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="section">
+  <h1>Meet Our Team</h1>
+  <p>Our expert agents are dedicated to helping you buy, sell, or rent with confidence and ease.</p>
+
+  <div class="team">
+    <img src="https://randomuser.me/api/portraits/women/45.jpg">
+    <img src="https://randomuser.me/api/portraits/men/33.jpg">
+    <img src="https://randomuser.me/api/portraits/women/65.jpg">
+    <img src="https://randomuser.me/api/portraits/men/51.jpg">
+  </div>
+
+  <div class="cta">
+    <h3>Ready to make your next move?</h3>
+    <p>Contact our team to schedule a consultation or explore our listings.</p>
+    <a href="#">Get in Touch</a>
+  </div>
+</section>
+
+</body>
+</html>
