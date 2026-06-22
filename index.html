@@ -1,0 +1,3200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S&SProperties | Find Your Dream Property</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #3b82f6;
+            --accent-color: #f59e0b;
+            --light-color: #f8fafc;
+            --dark-color: #1e293b;
+            --text-color: #334155;
+            --border-color: #e2e8f0;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #fff;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            color: var(--primary-color);
+            font-size: 28px;
+        }
+        
+        .logo h1 {
+            font-size: 24px;
+            color: var(--primary-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.3s;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        nav a:hover {
+            color: var(--primary-color);
+        }
+        
+        nav a.active {
+            color: var(--primary-color);
+        }
+        
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+        
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .btn {
+            padding: 8px 20px;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            font-size: 15px;
+        }
+        
+        .btn-login {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+        
+        .btn-register {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-login:hover {
+            background-color: #f1f5f9;
+        }
+        
+        .btn-register:hover {
+            background-color: #1d4ed8;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--primary-color);
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero h2 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            color: white;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+        
+        /* Search Bar */
+        .search-container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            margin: -40px auto 60px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .search-form {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group label {
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark-color);
+        }
+        
+        .form-control {
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 15px;
+        }
+        
+        .search-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            align-self: flex-end;
+        }
+        
+        .search-btn:hover {
+            background-color: #d97706;
+        }
+        
+        /* Section Styling */
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .section-title h2 {
+            font-size: 28px;
+        }
+        
+        .section-title a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        section {
+            padding: 60px 0;
+        }
+        
+        .section-light {
+            background-color: var(--light-color);
+        }
+        
+        /* Properties Grid */
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .property-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+        
+        .property-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .property-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .property-info {
+            padding: 20px;
+        }
+        
+        .property-price {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        
+        .property-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .property-location {
+            color: #64748b;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .property-features {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid var(--border-color);
+            padding-top: 15px;
+            margin-top: 15px;
+        }
+        
+        .feature {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 14px;
+            color: #64748b;
+        }
+        
+        .feature i {
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            font-size: 18px;
+        }
+        
+        /* Property Details Modal */
+        .property-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1001;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .property-modal-content {
+            background-color: white;
+            width: 100%;
+            max-width: 1100px;
+            max-height: 90vh;
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .property-modal-header {
+            background: linear-gradient(135deg, #1a3a5f 0%, #2c5282 100%);
+            color: white;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .property-modal-header h3 {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        
+        .property-modal-header p {
+            opacity: 0.9;
+            font-size: 16px;
+        }
+        
+        .close-property-modal {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            line-height: 1;
+        }
+        
+        .property-modal-body {
+            padding: 30px;
+            overflow-y: auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+        
+        .property-main-info {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        /* Image Gallery */
+        .property-image-gallery {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .main-property-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        
+        .property-image-thumbnails {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+        }
+        
+        .property-thumbnail {
+            width: 80px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 4px;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+        
+        .property-thumbnail:hover, .property-thumbnail.active {
+            opacity: 1;
+            border: 2px solid var(--primary-color);
+        }
+        
+        .image-count-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .property-price-highlight {
+            background-color: #e8f4fd;
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 5px solid #2c5282;
+        }
+        
+        .property-price-main {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1a3a5f;
+            margin-bottom: 5px;
+        }
+        
+        .property-price-unit {
+            font-size: 16px;
+            color: #4a5568;
+            margin-bottom: 15px;
+        }
+        
+        .property-price-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 10px;
+        }
+        
+        .property-price-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #4a5568;
+        }
+        
+        .property-price-item i {
+            color: #2c5282;
+        }
+        
+        .property-details-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .property-detail-item {
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 6px;
+        }
+        
+        .property-detail-label {
+            font-size: 13px;
+            color: #718096;
+            margin-bottom: 5px;
+        }
+        
+        .property-detail-value {
+            font-size: 15px;
+            font-weight: 500;
+            color: #2d3748;
+        }
+        
+        .property-features-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .property-feature-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 15px;
+            background-color: #f8f9fa;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+        
+        .property-feature-item.available i {
+            color: #38a169;
+        }
+        
+        .property-feature-item.not-available i {
+            color: #e53e3e;
+        }
+        
+        .property-dealer-info {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            padding: 25px;
+            position: sticky;
+            top: 20px;
+        }
+        
+        .property-dealer-name {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1a3a5f;
+            margin-bottom: 10px;
+        }
+        
+        .property-dealer-stats {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .property-stat-item {
+            text-align: center;
+        }
+        
+        .property-stat-value {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c5282;
+        }
+        
+        .property-stat-label {
+            font-size: 13px;
+            color: #718096;
+        }
+        
+        .property-enquiry-form {
+            margin-top: 25px;
+        }
+        
+        .property-form-group {
+            margin-bottom: 15px;
+        }
+        
+        .property-form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #4a5568;
+            font-size: 14px;
+        }
+        
+        .property-form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        
+        .property-select-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .property-select-group select {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        
+        .property-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+        
+        .property-btn-submit {
+            background: linear-gradient(135deg, #2c5282 0%, #1a3a5f 100%);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .property-btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(44, 82, 130, 0.3);
+        }
+        
+        .property-why-consider {
+            background: linear-gradient(135deg, #f0fff4 0%, #e8f4fd 100%);
+            padding: 25px;
+            border-radius: 8px;
+            margin-top: 25px;
+        }
+        
+        .property-consider-list {
+            margin-top: 15px;
+        }
+        
+        .property-consider-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .property-consider-item i {
+            color: #2c5282;
+            margin-top: 3px;
+        }
+        
+        /* Categories */
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        
+        .category-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+            background-color: #f0f9ff;
+        }
+        
+        .category-card.active {
+            background-color: #e0f2fe;
+            border: 2px solid var(--primary-color);
+        }
+        
+        .category-icon {
+            width: 70px;
+            height: 70px;
+            background-color: #e0f2fe;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+        }
+        
+        .category-icon i {
+            font-size: 30px;
+            color: var(--primary-color);
+        }
+        
+        /* Articles */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .article-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .article-img {
+            height: 180px;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .article-content {
+            padding: 20px;
+        }
+        
+        .article-content h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #94a3b8;
+            font-size: 14px;
+            margin-top: 15px;
+        }
+        
+        /* Cities */
+        .cities-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        
+        .city-card {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            height: 200px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .city-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .city-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .city-card:hover .city-img {
+            transform: scale(1.05);
+        }
+        
+        .city-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 20px;
+        }
+        
+        .city-properties {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        
+        /* Demand in Mumbai */
+        .demand-section {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .demand-header {
+            margin-bottom: 30px;
+        }
+        
+        .demand-header h2 {
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+        
+        .demand-header p {
+            color: #64748b;
+            font-size: 16px;
+        }
+        
+        .demand-regions {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .region-btn {
+            padding: 10px 25px;
+            background-color: white;
+            border: 2px solid var(--border-color);
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .region-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .demand-categories {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .demand-category {
+            background-color: #f8fafc;
+            border-radius: 8px;
+            padding: 25px;
+        }
+        
+        .demand-category h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        
+        .category-subtitle {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        
+        .locality-list {
+            list-style: none;
+        }
+        
+        .locality-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .locality-item:last-child {
+            border-bottom: none;
+        }
+        
+        .locality-name {
+            font-weight: 500;
+        }
+        
+        .locality-percentage {
+            background-color: #dbeafe;
+            color: var(--primary-color);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .view-all-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        
+        /* Popular Builders */
+        .builders-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+        
+        .builder-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .builder-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .builder-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            background-color: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            color: var(--primary-color);
+            flex-shrink: 0;
+        }
+        
+        .builder-info h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+        
+        .builder-info p {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        
+        /* Builder Modal */
+        .builder-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1002;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .builder-modal-content {
+            background-color: white;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .builder-modal-header {
+            background: linear-gradient(135deg, #1a3a5f 0%, #2c5282 100%);
+            color: white;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .builder-modal-header h3 {
+            color: white;
+            font-size: 24px;
+        }
+        
+        .close-builder-modal {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            line-height: 1;
+        }
+        
+        .builder-modal-body {
+            padding: 30px;
+            overflow-y: auto;
+        }
+        
+        .builder-info-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .builder-stats {
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+        }
+        
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary-color);
+        }
+        
+        .builder-properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .builder-property-card {
+            background: white;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .builder-property-card:hover {
+            transform: translateY(-3px);
+        }
+        
+        .builder-property-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        
+        .builder-property-info {
+            padding: 15px;
+        }
+        
+        .builder-property-info h4 {
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+        
+        .builder-property-info .price {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-top: 5px;
+        }
+        
+        /* Login & Register Modals */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .modal-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-header h3 {
+            color: white;
+            font-size: 22px;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            line-height: 1;
+        }
+        
+        .modal-body {
+            padding: 30px;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .form-full {
+            margin-bottom: 20px;
+        }
+        
+        .submit-btn {
+            background-color: var(--primary-color);
+            color: white;
+            width: 100%;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        
+        .form-footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #64748b;
+        }
+        
+        .form-footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: #cbd5e1;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+        
+        .footer-column h4 {
+            color: white;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-column a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid #334155;
+            color: #94a3b8;
+            font-size: 14px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .properties-grid, .articles-grid, .demand-categories {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .categories, .cities-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .search-form {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .property-modal-body {
+                grid-template-columns: 1fr;
+            }
+            
+            .property-dealer-info {
+                position: static;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h2 {
+                font-size: 32px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+            
+            .search-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .demand-categories, .builders-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .demand-regions {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .main-property-image {
+                height: 300px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .properties-grid, .articles-grid, .categories, .cities-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-container {
+                flex-wrap: wrap;
+            }
+            
+            .auth-buttons {
+                margin-top: 15px;
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .property-details-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Loading Spinner */
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            border-top: 4px solid var(--primary-color);
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Error Message */
+        .error-message {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px;
+            background-color: #fef2f2;
+            border-radius: 8px;
+            border: 1px solid #fecaca;
+            color: #dc2626;
+        }
+        
+        .error-message i {
+            font-size: 48px;
+            margin-bottom: 15px;
+            color: #dc2626;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-building"></i>
+                <h1>S&SProperties</h1>
+            </div>
+            
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav>
+                <ul>
+                    <li><a href="#" class="nav-link active" data-category="all">Buy</a></li>
+                    <li><a href="#" class="nav-link" data-category="rent">Rent</a></li>
+                    <li><a href="#" class="nav-link" data-category="new">New Launch</a></li>
+                    <li><a href="#" class="nav-link" data-category="commercial">Commercial</a></li>
+                    <li><a href="#" class="nav-link" data-category="plot">Plots/Land</a></li>
+
+
+                    <li><a href="ContactUs.html">ContactUs</a></li>
+                    <li><a href="Postproperty.html">Post Property</a></li>
+                </ul>
+            </nav>
+            
+            <div class="auth-buttons" id="authButtonsContainer">
+                <button class="btn btn-login" id="loginBtn">Login</button>
+                <button class="btn btn-register" id="registerBtn">Register</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Find Your Dream Property</h2>
+            <p>Discover the perfect home from our extensive collection of properties across India.</p>
+        </div>
+    </section>
+
+    <!-- Search Properties -->
+    <div class="container">
+        <div class="search-container">
+            <h3 style="margin-bottom: 20px; color: var(--dark-color);">Search Properties</h3>
+            <form class="search-form">
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <input type="text" id="location" class="form-control" placeholder="Enter city, locality or project">
+                </div>
+                <div class="form-group">
+                    <label for="property-type">Property Type</label>
+                    <select id="property-type" class="form-control">
+                        <option value="">Any Type</option>
+                        <option value="apartment">Apartment</option>
+                        <option value="villa">Villa</option>
+                        <option value="plot">Plot/Land</option>
+                        <option value="commercial">Commercial</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="budget">Budget</label>
+                    <select id="budget" class="form-control">
+                        <option value="">Any Budget</option>
+                        <option value="0-50">Under 50 Lakhs</option>
+                        <option value="50-100">50 Lakhs - 1 Crore</option>
+                        <option value="100-200">1 - 2 Crore</option>
+                        <option value="200+">Above 2 Crore</option>
+                    </select>
+                </div>
+                <button type="submit" class="search-btn">Search <i class="fas fa-search"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Featured Properties -->
+    <section class="container">
+        <div class="section-title">
+            <h2>Featured Properties</h2>
+            <a href="#">View All <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="properties-grid" id="propertiesContainer">
+            <!-- Properties will be loaded here by JavaScript -->
+        </div>
+    </section>
+
+    <!-- Property Categories -->
+    <section class="section-light">
+        <div class="container">
+            <div class="section-title">
+                <h2>Browse by Category</h2>
+                <a href="#">Explore All <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="categories">
+                <div class="category-card active" data-category="all">
+                    <div class="category-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Buy</h3>
+                    <p>Find your perfect home from thousands of listings</p>
+                </div>
+                <div class="category-card" data-category="rent">
+                    <div class="category-icon">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <h3>Rent</h3>
+                    <p>Short term or long term rental properties</p>
+                </div>
+                <div class="category-card" data-category="new">
+                    <div class="category-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>New Launch</h3>
+                    <p>Brand new projects from top builders</p>
+                </div>
+                <div class="category-card" data-category="commercial">
+                    <div class="category-icon">
+                        <i class="fas fa-warehouse"></i>
+                    </div>
+                    <h3>Commercial</h3>
+                    <p>Office spaces, shops, and warehouses</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Top Articles -->
+    <section class="container">
+        <div class="section-title">
+            <h2>Top Articles on Home Buying</h2>
+            <a href="#">Read All Articles <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="articles-grid">
+            <div class="article-card">
+                <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Home Buying Tips" class="article-img">
+                <div class="article-content">
+                    <h3>10 Essential Tips for First-Time Home Buyers</h3>
+                    <p>Navigating the real estate market for the first time can be overwhelming. Here are key tips to make the process smoother.</p>
+                    <div class="article-meta">
+                        <span>By Shruti </span>
+                        <span>May 15, 2023</span>
+                    </div>
+                </div>
+            </div>
+            <div class="article-card">
+                <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Home Loan" class="article-img">
+                <div class="article-content">
+                    <h3>How to Get the Best Home Loan Interest Rates</h3>
+                    <p>Understanding home loan options and negotiating the best rates can save you lakhs over the loan tenure.</p>
+                    <div class="article-meta">
+                        <span>By Sahil Khan </span>
+                        <span>June 2, 2023</span>
+                    </div>
+                </div>
+            </div>
+            <div class="article-card">
+                <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Property Investment" class="article-img">
+                <div class="article-content">
+                    <h3>Property Investment Strategies for 2023</h3>
+                    <p>Learn about the most promising real estate investment approaches in the current market scenario.</p>
+                    <div class="article-meta">
+                        <span>By Lisha Naik </span>
+                        <span>April 28, 2023</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Explore Real Estate in Popular Indian Cities -->
+    <section class="section-light">
+        <div class="container">
+            <div class="section-title">
+                <h2>Explore Real Estate in Popular Indian Cities</h2>
+                <a href="#">All Cities <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="cities-grid">
+                <div class="city-card" data-city="mumbai">
+                    <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Mumbai" class="city-img">
+                    <div class="city-overlay">
+                        <h3>Mumbai</h3>
+                        <div class="city-properties">1,200+ Properties</div>
+                    </div>
+                </div>
+                <div class="city-card" data-city="delhi">
+                    <img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Delhi" class="city-img">
+                    <div class="city-overlay">
+                        <h3>Delhi</h3>
+                        <div class="city-properties">980+ Properties</div>
+                    </div>
+                </div>
+                <div class="city-card" data-city="bangalore">
+                    <img src="https://images.unsplash.com/photo-1595665593673-bf1ad72905c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Bangalore" class="city-img">
+                    <div class="city-overlay">
+                        <h3>Bangalore</h3>
+                        <div class="city-properties">1,500+ Properties</div>
+                    </div>
+                </div>
+                <div class="city-card" data-city="hyderabad">
+                    <img src="https://images.unsplash.com/photo-1596176530529-78163a4f7af2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Hyderabad" class="city-img">
+                    <div class="city-overlay">
+                        <h3>Hyderabad</h3>
+                        <div class="city-properties">850+ Properties</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demand in Mumbai -->
+    <section class="container">
+        <div class="demand-section">
+            <div class="demand-header">
+                <h2>Demand in Mumbai</h2>
+                <p>Where are buyers searching in Mumbai</p>
+            </div>
+            
+            <div class="demand-regions">
+                <button class="region-btn active" data-region="western">Western Mumbai</button>
+                <button class="region-btn" data-region="central">Central Mumbai</button>
+                <button class="region-btn" data-region="south">Mumbai South</button>
+            </div>
+            
+            <div id="demandContent">
+                <!-- Demand content will be loaded here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Builders -->
+    <section class="section-light">
+        <div class="container">
+            <div class="section-title">
+                <h2>Popular Builders in Western Mumbai</h2>
+                <a href="#">View All Builders <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="builders-grid">
+                <div class="builder-card" data-builder="oberoi">
+                    <div class="builder-logo">O</div>
+                    <div class="builder-info">
+                        <h3>Oberoi Realty</h3>
+                        <p>24 Total Projects | 19 in this city</p>
+                        <p style="color: var(--primary-color); font-weight: 500;">Click to view properties</p>
+                    </div>
+                </div>
+                <div class="builder-card" data-builder="godrej">
+                    <div class="builder-logo">G</div>
+                    <div class="builder-info">
+                        <h3>Godrej Properties</h3>
+                        <p>190 Total Projects | 6 in this city</p>
+                        <p style="color: var(--primary-color); font-weight: 500;">Click to view properties</p>
+                    </div>
+                </div>
+                <div class="builder-card" data-builder="lodha">
+                    <div class="builder-logo">L</div>
+                    <div class="builder-info">
+                        <h3>Lodha Developers Limited</h3>
+                        <p>182 Total Projects | 12 in this city</p>
+                        <p style="color: var(--primary-color); font-weight: 500;">Click to view properties</p>
+                    </div>
+                </div>
+                <div class="builder-card" data-builder="rustomjee">
+                    <div class="builder-logo">R</div>
+                    <div class="builder-info">
+                        <h3>Rustomjee Builders</h3>
+                        <p>59 Total Projects | 41 in this city</p>
+                        <p style="color: var(--primary-color); font-weight: 500;">Click to view properties</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Property Details Modal -->
+    <div class="property-modal" id="propertyModal">
+        <div class="property-modal-content">
+            <div class="property-modal-header">
+                <div>
+                    <h3 id="propertyModalTitle">Property Details</h3>
+                    <p id="propertyModalLocation"></p>
+                </div>
+                <button class="close-property-modal">&times;</button>
+            </div>
+            <div class="property-modal-body" id="propertyModalContent">
+                <!-- Property details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Builder Modal -->
+    <div class="builder-modal" id="builderModal">
+        <div class="builder-modal-content">
+            <div class="builder-modal-header">
+                <h3 id="builderModalTitle">Builder Properties</h3>
+                <button class="close-builder-modal">&times;</button>
+            </div>
+            <div class="builder-modal-body" id="builderModalContent">
+                <!-- Builder details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Login to S&SProperties</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm">
+                    <div class="form-full">
+                        <label for="loginEmail">Email Address</label>
+                        <input type="email" id="loginEmail" class="form-control" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-full">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" class="form-control" placeholder="Enter your password" required>
+                    </div>
+                    <div class="form-footer">
+                        <button type="submit" class="btn submit-btn">Login</button>
+                        <p style="margin-top: 15px;">Don't have an account? <a href="#" id="showRegister">Register here</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Create an Account</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="registerForm">
+                    <div class="form-row">
+                        <div class="form-full">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" class="form-control" placeholder="Enter first name" required>
+                        </div>
+                        <div class="form-full">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" class="form-control" placeholder="Enter last name" required>
+                        </div>
+                    </div>
+                    <div class="form-full">
+                        <label for="registerEmail">Email Address</label>
+                        <input type="email" id="registerEmail" class="form-control" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-full">
+                        <label for="registerPassword">Password</label>
+                        <input type="password" id="registerPassword" class="form-control" placeholder="Create a password" required>
+                    </div>
+                    <div class="form-full">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" class="form-control" placeholder="Enter your phone number" required>
+                    </div>
+                    <div class="form-footer">
+                        <button type="submit" class="btn submit-btn">Create Account</button>
+                        <p style="margin-top: 15px;">Already have an account? <a href="#" id="showLogin">Login here</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h4>S&SProperties</h4>
+                    <p>Your trusted partner in finding the perfect property. With thousands of listings and expert advice, we make real estate simple.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#">Buy Property</a></li>
+                        <li><a href="#">Rent Property</a></li>
+                        <li><a href="#">New Launches</a></li>
+                        <li><a href="Postproperty.html">Post Property</a></li>
+                        <li><a href="aboutUs.html">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Popular Cities</h4>
+                    <ul>
+                        <li><a href="#">Mumbai</a></li>
+                        <li><a href="#">Delhi</a></li>
+                        <li><a href="#">Bangalore</a></li>
+                        <li><a href="#">Hyderabad</a></li>
+                        <li><a href="#">Pune</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> +91 98765 43210</li>
+                        <li><i class="fas fa-envelope"></i> info@snsproperties.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Business Street, Mumbai</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 S&SProperties. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Builder information
+        const builders = {
+            "oberoi": {
+                name: "Oberoi Realty",
+                totalProjects: 24,
+                cityProjects: 19,
+                description: "Oberoi Realty is one of India's leading real estate development companies with a focus on luxury residential and commercial properties.",
+                properties: [1, 3, 6]
+            },
+            "godrej": {
+                name: "Godrej Properties",
+                totalProjects: 190,
+                cityProjects: 6,
+                description: "Godrej Properties is one of India's most trusted real estate developers known for sustainable and innovative projects.",
+                properties: [2, 7]
+            },
+            "lodha": {
+                name: "Lodha Developers Limited",
+                totalProjects: 182,
+                cityProjects: 12,
+                description: "Lodha Group is India's largest real estate developer by sales and has delivered over 85 million sq. ft. of real estate.",
+                properties: [1, 5, 8, 9]
+            },
+            "rustomjee": {
+                name: "Rustomjee Builders",
+                totalProjects: 59,
+                cityProjects: 41,
+                description: "Rustomjee has been creating landmark residential and commercial projects in Mumbai for over three decades.",
+                properties: [4]
+            }
+        };
+
+        // Demand data for Mumbai regions
+        const demandData = {
+            "western": {
+                "apartment": [
+                    { name: "Powai", percentage: "16%" },
+                    { name: "Vikhroli", percentage: "10%" },
+                    { name: "Mulund", percentage: "6%" },
+                    { name: "Chembur", percentage: "5%" },
+                    { name: "Hiranandani Gardens P...", percentage: "5%" }
+                ],
+                "plots": [
+                    { name: "Powai", percentage: "19%" },
+                    { name: "Mulund", percentage: "18%" },
+                    { name: "Kurla", percentage: "8%" },
+                    { name: "Vikhroli", percentage: "5%" },
+                    { name: "Ghatkopar", percentage: "5%" }
+                ],
+                "builderFloor": [
+                    { name: "Vikhroli", percentage: "2%" },
+                    { name: "Ghatkopar", percentage: "2%" },
+                    { name: "Powai", percentage: "2%" },
+                    { name: "Mulund", percentage: "2%" },
+                    { name: "Chembur", percentage: "2%" }
+                ]
+            },
+            "central": {
+                "apartment": [
+                    { name: "Worli", percentage: "12%" },
+                    { name: "Parel", percentage: "10%" },
+                    { name: "Dadar", percentage: "6%" },
+                    { name: "Matunga", percentage: "5%" },
+                    { name: "Marine Lines", percentage: "4%" }
+                ],
+                "plots": [
+                    { name: "Worli", percentage: "14%" },
+                    { name: "Worli Sea Face", percentage: "14%" },
+                    { name: "Dadar", percentage: "13%" },
+                    { name: "Parel", percentage: "6%" },
+                    { name: "Malabar Hill", percentage: "5%" }
+                ],
+                "builderFloor": [
+                    { name: "Matunga", percentage: "14%" },
+                    { name: "Parel", percentage: "14%" },
+                    { name: "Worli", percentage: "13%" },
+                    { name: "Mahalaxmi", percentage: "6%" },
+                    { name: "Dadar", percentage: "5%" }
+                ]
+            },
+            "south": {
+                "apartment": [
+                    { name: "Colaba", percentage: "15%" },
+                    { name: "Nariman Point", percentage: "12%" },
+                    { name: "Churchgate", percentage: "10%" },
+                    { name: "Fort", percentage: "8%" },
+                    { name: "Cuffe Parade", percentage: "6%" }
+                ],
+                "plots": [
+                    { name: "Malabar Hill", percentage: "18%" },
+                    { name: "Breach Candy", percentage: "12%" },
+                    { name: "Walkeshwar", percentage: "10%" },
+                    { name: "Cuffe Parade", percentage: "8%" },
+                    { name: "Colaba", percentage: "7%" }
+                ],
+                "builderFloor": [
+                    { name: "Churchgate", percentage: "15%" },
+                    { name: "Fort", percentage: "12%" },
+                    { name: "Colaba", percentage: "10%" },
+                    { name: "Nariman Point", percentage: "8%" },
+                    { name: "Cuffe Parade", percentage: "6%" }
+                ]
+            }
+        };
+
+        // Fallback property data (used if database fetch fails)
+        const fallbackProperties = [
+            {
+                id: 1,
+                title: "Luxury 3BHK Apartment in Bandra",
+                location: "Bandra West, Mumbai",
+                price: "₹4.2 Cr",
+                pricePerSqft: "₹38,182 per sq.ft.",
+                images: [
+                    "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1494522358652-c549345d2c9e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1518780664697-55e3ad937233?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+                ],
+                bedrooms: 3,
+                bathrooms: 3,
+                area: "1800 sq.ft.",
+                carpetArea: "1650 sq.ft.",
+                floor: "12th of 25 Floors",
+                facing: "Sea Facing",
+                propertyAge: "New Launch",
+                transactionType: "New",
+                furnishing: "Fully Furnished",
+                parking: "2 Covered",
+                powerBackup: "Full",
+                propertyOwnership: "Freehold",
+                roadWidth: "60 Feet",
+                wheelchairFriendly: "Yes",
+                gatedCommunity: "Yes",
+                petFriendly: "Yes",
+                flooring: "Marble",
+                cornerProperty: "No",
+                waterSource: "Municipal + Borewell",
+                overlooking: "Sea View, Garden",
+                configuration: "3 BHK, 3 Bathrooms, 2 Balconies",
+                address: "Luxury Towers, Bandra West, Mumbai 400050",
+                features: ["Vaastu Compliant", "Security / Fire Alarm", "Lift(s)", "Maintenance Staff", "Water Storage", "Park", "Visitor Parking", "Security Guard", "Gym", "Swimming Pool"],
+                whyConsider: [
+                    "Prime sea-facing location in Bandra",
+                    "Premium luxury amenities including gym and pool",
+                    "24/7 security and power backup",
+                    "Proximity to international schools and hospitals",
+                    "Excellent rental and resale value"
+                ],
+                dealerName: "Elite Realty Consultants",
+                dealerProperties: 65,
+                dealerVerified: 22,
+                dealerAddress: "Bandra West, Mumbai",
+                dealerLocalities: "Bandra, Juhu, Santacruz",
+                category: "all",
+                builder: "lodha",
+                city: "mumbai",
+                propertyCode: "P00123"
+            },
+            {
+                id: 2,
+                title: "Modern 2BHK in Powai",
+                location: "Powai, Mumbai",
+                price: "₹2.8 Cr",
+                pricePerSqft: "₹22,400 per sq.ft.",
+                images: [
+                    "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1494522358652-c549345d2c9e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+                ],
+                bedrooms: 2,
+                bathrooms: 2,
+                area: "1250 sq.ft.",
+                carpetArea: "1100 sq.ft.",
+                floor: "8th of 15 Floors",
+                facing: "East",
+                propertyAge: "5 Year Old",
+                transactionType: "Resale",
+                furnishing: "Semifurnished",
+                parking: "1 Covered",
+                powerBackup: "Partial",
+                propertyOwnership: "Freehold",
+                roadWidth: "40 Feet",
+                wheelchairFriendly: "Yes",
+                gatedCommunity: "Yes",
+                petFriendly: "Yes",
+                flooring: "Vitrified",
+                cornerProperty: "Yes",
+                waterSource: "Municipal Corporation",
+                overlooking: "Lake View, Garden",
+                configuration: "2 BHK, 2 Bathrooms, 1 Balcony",
+                address: "Hiranandani Gardens, Powai, Mumbai 400076",
+                features: ["Vaastu Compliant", "Security / Fire Alarm", "Lift(s)", "Maintenance Staff", "Water Storage", "Park", "Visitor Parking", "Security Guard"],
+                whyConsider: [
+                    "Premium location in Hiranandani Gardens",
+                    "Excellent amenities and maintenance",
+                    "Close to corporate offices and tech parks",
+                    "Good schools and hospitals nearby",
+                    "High appreciation potential"
+                ],
+                dealerName: "Prime Property Solutions",
+                dealerProperties: 42,
+                dealerVerified: 15,
+                dealerAddress: "Powai, Mumbai",
+                dealerLocalities: "Powai, Vikhroli, Chandivali",
+                category: "all",
+                builder: "godrej",
+                city: "mumbai",
+                propertyCode: "P00234"
+            },
+            {
+                id: 3,
+                title: "Sea-Facing 4BHK Villa",
+                location: "Juhu, Mumbai",
+                price: "₹12.5 Cr",
+                pricePerSqft: "₹35,714 per sq.ft.",
+                images: [
+                    "https://images.unsplash.com/photo-1613977257363-707ba9348227?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+                ],
+                bedrooms: 4,
+                bathrooms: 4,
+                area: "3500 sq.ft.",
+                carpetArea: "3200 sq.ft.",
+                floor: "Ground + 2",
+                facing: "West",
+                propertyAge: "15 Year Old",
+                transactionType: "Resale",
+                furnishing: "Fully Furnished",
+                parking: "4 Covered",
+                powerBackup: "Full",
+                propertyOwnership: "Freehold",
+                roadWidth: "80 Feet",
+                wheelchairFriendly: "Yes",
+                gatedCommunity: "Yes",
+                petFriendly: "Yes",
+                flooring: "Italian Marble",
+                cornerProperty: "Yes",
+                waterSource: "Municipal + RO Plant",
+                overlooking: "Sea View, Private Garden",
+                configuration: "4 BHK, 4 Bathrooms, 3 Balconies, Private Garden",
+                address: "Juhu Tara Road, Juhu, Mumbai 400049",
+                features: ["Vaastu Compliant", "Security / Fire Alarm", "Lift(s)", "Maintenance Staff", "Water Storage", "Private Garden", "Visitor Parking", "Security Guard", "Home Theater", "Wine Cellar"],
+                whyConsider: [
+                    "Exclusive sea-facing villa in prime Juhu location",
+                    "Private garden and premium amenities",
+                    "Celebrity neighborhood with high security",
+                    "Excellent investment value",
+                    "Proximity to airport and business districts"
+                ],
+                dealerName: "Luxury Homes Mumbai",
+                dealerProperties: 28,
+                dealerVerified: 12,
+                dealerAddress: "Juhu, Mumbai",
+                dealerLocalities: "Juhu, Bandra, Worli",
+                category: "all",
+                builder: "oberoi",
+                city: "mumbai",
+                propertyCode: "P00345"
+            },
+            {
+                id: 4,
+                title: "Premium 1BHK for Rent",
+                location: "Andheri East, Mumbai",
+                price: "₹35,000/month",
+                pricePerSqft: "₹53.85 per sq.ft.",
+                images: [
+                    "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+                ],
+                bedrooms: 1,
+                bathrooms: 1,
+                area: "650 sq.ft.",
+                carpetArea: "580 sq.ft.",
+                floor: "5th of 7 Floors",
+                facing: "North",
+                propertyAge: "8 Year Old",
+                transactionType: "Rent",
+                furnishing: "Semifurnished",
+                parking: "1 Open",
+                powerBackup: "Partial",
+                propertyOwnership: "Freehold",
+                roadWidth: "30 Feet",
+                wheelchairFriendly: "No",
+                gatedCommunity: "No",
+                petFriendly: "Yes",
+                flooring: "Vitrified",
+                cornerProperty: "No",
+                waterSource: "Municipal Corporation",
+                overlooking: "Main Road",
+                configuration: "1 BHK, 1 Bathroom, 1 Balcony",
+                address: "Chakala Road, Andheri East, Mumbai 400069",
+                features: ["Security / Fire Alarm", "Lift(s)", "Water Storage", "24x7 Water Supply"],
+                whyConsider: [
+                    "Affordable rental in prime Andheri location",
+                    "Close to metro station and business hubs",
+                    "Good connectivity to airport",
+                    "Basic amenities available",
+                    "Flexible rental terms available"
+                ],
+                dealerName: "Rent Easy Mumbai",
+                dealerProperties: 85,
+                dealerVerified: 40,
+                dealerAddress: "Andheri East, Mumbai",
+                dealerLocalities: "Andheri, Vile Parle, Goregaon",
+                category: "rent",
+                builder: "rustomjee",
+                city: "mumbai",
+                propertyCode: "P00456"
+            },
+            {
+                id: 5,
+                title: "New Launch 3BHK Apartment",
+                location: "Thane, Mumbai",
+                price: "₹1.8 Cr",
+                pricePerSqft: "₹12,857 per sq.ft.",
+                images: [
+                    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+                ],
+                bedrooms: 3,
+                bathrooms: 2,
+                area: "1400 sq.ft.",
+                carpetArea: "1250 sq.ft.",
+                floor: "Various Floors Available",
+                facing: "East",
+                propertyAge: "New Launch",
+                transactionType: "New",
+                furnishing: "Unfurnished",
+                parking: "1 Covered",
+                powerBackup: "Full",
+                propertyOwnership: "Freehold",
+                roadWidth: "60 Feet",
+                wheelchairFriendly: "Yes",
+                gatedCommunity: "Yes",
+                petFriendly: "Yes",
+                flooring: "Vitrified",
+                cornerProperty: "Yes",
+                waterSource: "Municipal + Borewell",
+                overlooking: "Garden, Club House",
+                configuration: "3 BHK, 2 Bathrooms, 2 Balconies",
+                address: "New Township, Thane West, Mumbai 400601",
+                features: ["Vaastu Compliant", "Security / Fire Alarm", "Lift(s)", "Maintenance Staff", "Water Storage", "Park", "Visitor Parking", "Security Guard", "Club House", "Children's Play Area"],
+                whyConsider: [
+                    "Brand new project with modern amenities",
+                    "Affordable pricing with flexible payment plans",
+                    "Excellent future development potential",
+                    "Good connectivity to Mumbai",
+                    "Green surroundings with garden view"
+                ],
+                dealerName: "New Horizon Builders",
+                dealerProperties: 120,
+                dealerVerified: 65,
+                dealerAddress: "Thane West, Mumbai",
+                dealerLocalities: "Thane, Mulund, Bhandup",
+                category: "new",
+                builder: "lodha",
+                city: "mumbai",
+                propertyCode: "P00567"
+            }
+        ];
+
+        // DOM Elements
+        const propertiesContainer = document.getElementById('propertiesContainer');
+        const propertyModal = document.getElementById('propertyModal');
+        const propertyModalTitle = document.getElementById('propertyModalTitle');
+        const propertyModalLocation = document.getElementById('propertyModalLocation');
+        const propertyModalContent = document.getElementById('propertyModalContent');
+        const closePropertyModal = document.querySelector('.close-property-modal');
+        const loginBtn = document.getElementById('loginBtn');
+        const registerBtn = document.getElementById('registerBtn');
+        const loginModal = document.getElementById('loginModal');
+        const registerModal = document.getElementById('registerModal');
+        const closeModalBtns = document.querySelectorAll('.close-modal');
+        const showRegister = document.getElementById('showRegister');
+        const showLogin = document.getElementById('showLogin');
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+        const searchForm = document.querySelector('.search-form');
+        const categoryCards = document.querySelectorAll('.category-card');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const demandContent = document.getElementById('demandContent');
+        const regionBtns = document.querySelectorAll('.region-btn');
+        const builderCards = document.querySelectorAll('.builder-card');
+        const builderModal = document.getElementById('builderModal');
+        const builderModalTitle = document.getElementById('builderModalTitle');
+        const builderModalContent = document.getElementById('builderModalContent');
+        const closeBuilderModal = document.querySelector('.close-builder-modal');
+        const cityCards = document.querySelectorAll('.city-card');
+        const authButtonsContainer = document.getElementById('authButtonsContainer');
+
+        // Global variables
+        let currentCategory = 'all';
+        let currentCity = null;
+        let currentImageIndex = 0;
+        let currentRegion = 'western';
+        let currentUser = null;
+        let databaseProperties = []; // Store properties fetched from database
+
+        // API base URL
+        const API_BASE_URL = '';
+
+        // Load properties on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Fetch properties from database
+            fetchProperties();
+            renderDemandData(currentRegion);
+            
+            // Check if user is already logged in
+            checkLoginStatus();
+            
+            // Set active navigation link
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const category = this.getAttribute('data-category');
+                    
+                    // Update active state
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filter properties
+                    filterPropertiesByCategory(category);
+                });
+            });
+
+            // Make builder cards clickable
+            builderCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const builderId = this.getAttribute('data-builder');
+                    const builder = builders[builderId];
+                    
+                    if (builder) {
+                        showBuilderProperties(builder);
+                    }
+                });
+            });
+
+            // Make city cards clickable
+            cityCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const city = this.getAttribute('data-city');
+                    const cityTitle = this.querySelector('h3').textContent;
+                    
+                    // Filter properties by city
+                    const cityProperties = getPropertiesToUse().filter(property => 
+                        property.city === city
+                    );
+                    
+                    // Update section title temporarily
+                    const sectionTitle = document.querySelector('.cities-section .section-title h2');
+                    if (sectionTitle) {
+                        const originalTitle = sectionTitle.textContent;
+                        sectionTitle.textContent = `Properties in ${cityTitle}`;
+                        
+                        // Show properties for this city
+                        if (cityProperties.length > 0) {
+                            renderProperties(cityProperties);
+                            
+                            // Scroll to properties section
+                            document.querySelector('.properties-grid').scrollIntoView({
+                                behavior: 'smooth'
+                            });
+                            
+                            // Reset title after 5 seconds
+                            setTimeout(() => {
+                                sectionTitle.textContent = originalTitle;
+                            }, 5000);
+                        } else {
+                            alert(`No properties found in ${cityTitle}. Showing all properties instead.`);
+                            renderProperties(getPropertiesToUse().slice(0, 9));
+                        }
+                    }
+                });
+            });
+
+            // Region button click events
+            regionBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const region = this.getAttribute('data-region');
+                    
+                    // Update active state
+                    regionBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Update demand data
+                    currentRegion = region;
+                    renderDemandData(region);
+                });
+            });
+        });
+
+        // Function to get properties to use (database or fallback)
+        function getPropertiesToUse() {
+            return databaseProperties.length > 0 ? databaseProperties : fallbackProperties;
+        }
+
+        // Fetch properties from database
+        function fetchProperties() {
+            // Show loading state
+            propertiesContainer.innerHTML = `
+                <div style="grid-column: 1 / -1; text-align: center; padding: 40px;">
+                    <div class="spinner"></div>
+                    <p>Loading properties...</p>
+                </div>
+            `;
+            
+            fetch(`${API_BASE_URL}get_properties.php`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success && data.properties) {
+                        // Store properties globally
+                        databaseProperties = data.properties;
+                        
+                        // Show first 9 properties
+                        renderProperties(data.properties.slice(0, 9));
+                    } else {
+                        // Fallback to hardcoded properties
+                        console.log('Using fallback properties:', data.message || 'No properties found');
+                        renderProperties(fallbackProperties.slice(0, 9));
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching properties from database:', error);
+                    // Fallback to hardcoded properties
+                    showError('Could not load properties from server. Showing sample properties.');
+                    renderProperties(fallbackProperties.slice(0, 9));
+                });
+        }
+
+        // Show error message
+        function showError(message) {
+            propertiesContainer.innerHTML = `
+                <div class="error-message">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3>Unable to Load Properties</h3>
+                    <p>${message}</p>
+                    <button onclick="fetchProperties()" style="margin-top: 15px; padding: 10px 20px; background-color: var(--primary-color); color: white; border: none; border-radius: 4px; cursor: pointer;">
+                        <i class="fas fa-redo"></i> Try Again
+                    </button>
+                </div>
+            `;
+        }
+
+        // Check if user is logged in
+        function checkLoginStatus() {
+            const userSession = localStorage.getItem('userSession');
+            if (userSession) {
+                try {
+                    const user = JSON.parse(userSession);
+                    currentUser = user;
+                    updateLoginUI(user);
+                } catch (e) {
+                    console.error('Error parsing user session:', e);
+                    localStorage.removeItem('userSession');
+                }
+            }
+        }
+
+        // Update UI after login
+        function updateLoginUI(user) {
+            authButtonsContainer.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-user-circle" style="font-size: 24px; color: var(--primary-color);"></i>
+                        <div>
+                            <div style="font-weight: 500; color: var(--dark-color);">${user.first_name} ${user.last_name}</div>
+                            <div style="font-size: 12px; color: var(--text-color);">${user.email}</div>
+                        </div>
+                    </div>
+                    <button class="btn btn-login" id="logoutBtn">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </div>
+            `;
+            
+            document.getElementById('logoutBtn').addEventListener('click', logoutUser);
+        }
+
+        // Logout user
+        function logoutUser() {
+            fetch(`${API_BASE_URL}logout.php`)
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message);
+                    localStorage.removeItem('userSession');
+                    currentUser = null;
+                    location.reload();
+                })
+                .catch(error => {
+                    console.error('Logout error:', error);
+                    localStorage.removeItem('userSession');
+                    currentUser = null;
+                    location.reload();
+                });
+        }
+
+        // Render properties to the grid
+        function renderProperties(propertiesArray) {
+            propertiesContainer.innerHTML = '';
+            
+            if (!propertiesArray || propertiesArray.length === 0) {
+                propertiesContainer.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 40px;">
+                        <h3>No properties found</h3>
+                        <p>Try adjusting your search filters or check back later</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            propertiesArray.forEach(property => {
+                const propertyCard = document.createElement('div');
+                propertyCard.className = 'property-card';
+                propertyCard.setAttribute('data-id', property.id);
+                propertyCard.innerHTML = `
+                    <img src="${property.images[0]}" alt="${property.title}" class="property-img">
+                    <div class="property-info">
+                        <div class="property-price">${property.price}</div>
+                        <h3 class="property-title">${property.title}</h3>
+                        <div class="property-location">
+                            <i class="fas fa-map-marker-alt"></i> ${property.location}
+                        </div>
+                        <div class="property-features">
+                            <div class="feature">
+                                <i class="fas fa-bed"></i>
+                                <span>${property.bedrooms}</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-bath"></i>
+                                <span>${property.bathrooms}</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-expand"></i>
+                                <span>${property.area}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                // Add click event to open property modal
+                propertyCard.addEventListener('click', () => openPropertyModal(property));
+                propertiesContainer.appendChild(propertyCard);
+            });
+        }
+
+        // Render demand data
+        function renderDemandData(region) {
+            const data = demandData[region];
+            
+            let demandHTML = `
+                <div class="demand-categories">
+                    <div class="demand-category">
+                        <h3>Apartment</h3>
+                        <p class="category-subtitle">Most searched localities for Flat/Apartment</p>
+                        <ul class="locality-list">
+            `;
+            
+            // Add apartment data
+            data.apartment.forEach(item => {
+                demandHTML += `
+                    <li class="locality-item">
+                        <span class="locality-name">#${data.apartment.indexOf(item) + 1} ${item.name}</span>
+                        <span class="locality-percentage">${item.percentage} Searches</span>
+                    </li>
+                `;
+            });
+            
+            demandHTML += `
+                        </ul>
+                        <a href="#" class="view-all-link">View all ${data.apartment.length} Localities</a>
+                    </div>
+                    
+                    <div class="demand-category">
+                        <h3>Plots</h3>
+                        <p class="category-subtitle">Most searched societies for Plots</p>
+                        <ul class="locality-list">
+            `;
+            
+            // Add plots data
+            data.plots.forEach(item => {
+                demandHTML += `
+                    <li class="locality-item">
+                        <span class="locality-name">#${data.plots.indexOf(item) + 1} ${item.name}</span>
+                        <span class="locality-percentage">${item.percentage} Searches</span>
+                    </li>
+                `;
+            });
+            
+            demandHTML += `
+                        </ul>
+                        <a href="#" class="view-all-link">View all ${data.plots.length} Localities</a>
+                    </div>
+                    
+                    <div class="demand-category">
+                        <h3>Builder Floor</h3>
+                        <p class="category-subtitle">Most searched societies for Builder Floor</p>
+                        <ul class="locality-list">
+            `;
+            
+            // Add builder floor data
+            data.builderFloor.forEach(item => {
+                demandHTML += `
+                    <li class="locality-item">
+                        <span class="locality-name">#${data.builderFloor.indexOf(item) + 1} ${item.name}</span>
+                        <span class="locality-percentage">${item.percentage} Searches</span>
+                    </li>
+                `;
+            });
+            
+            demandHTML += `
+                        </ul>
+                        <a href="#" class="view-all-link">View all ${data.builderFloor.length} Localities</a>
+                    </div>
+                </div>
+            `;
+            
+            demandContent.innerHTML = demandHTML;
+        }
+
+        // Show builder properties
+        function showBuilderProperties(builder) {
+            // Update modal title
+            builderModalTitle.textContent = builder.name;
+            
+            // Get builder's properties
+            const builderProperties = getPropertiesToUse().filter(property => 
+                builder.properties.includes(property.id)
+            );
+            
+            // Generate content
+            let contentHTML = `
+                <div class="builder-info-section">
+                    <p>${builder.description}</p>
+                    <div class="builder-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-project-diagram"></i>
+                            <span>Total Projects: ${builder.totalProjects}</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-building"></i>
+                            <span>Projects in Mumbai: ${builder.cityProjects}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            if (builderProperties.length > 0) {
+                contentHTML += `
+                    <h3 style="margin: 20px 0 10px; color: var(--dark-color);">
+                        Properties by ${builder.name}
+                    </h3>
+                    <div class="builder-properties-grid">
+                `;
+                
+                builderProperties.forEach(property => {
+                    contentHTML += `
+                        <div class="builder-property-card" onclick="openPropertyModal(${property.id})">
+                            <img src="${property.images[0]}" alt="${property.title}">
+                            <div class="builder-property-info">
+                                <h4>${property.title}</h4>
+                                <p><i class="fas fa-map-marker-alt"></i> ${property.location}</p>
+                                <p class="price">${property.price}</p>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                contentHTML += `</div>`;
+            } else {
+                contentHTML += `<p>No properties available for this builder at the moment.</p>`;
+            }
+            
+            builderModalContent.innerHTML = contentHTML;
+            builderModal.style.display = 'flex';
+        }
+
+        // Open property modal with details
+        function openPropertyModal(property) {
+            if (!property) return;
+            
+            // Update modal header
+            propertyModalTitle.textContent = property.title;
+            propertyModalLocation.textContent = property.location;
+            
+            // Generate property details HTML
+            let propertyDetailsHTML = `
+                <div class="property-main-info">
+                    <div class="property-image-gallery">
+                        <div class="image-count-badge">
+                            <i class="fas fa-images"></i> ${property.images.length} Photos
+                        </div>
+                        <img id="mainPropertyImage" src="${property.images[0]}" alt="${property.title}" class="main-property-image">
+                        <div class="property-image-thumbnails" id="propertyThumbnails">
+            `;
+            
+            // Add thumbnails
+            property.images.forEach((img, index) => {
+                propertyDetailsHTML += `
+                    <img src="${img}" alt="Property Image ${index + 1}" 
+                         class="property-thumbnail ${index === 0 ? 'active' : ''}" 
+                         data-index="${index}"
+                         onclick="changePropertyImage(${index}, '${img}')">
+                `;
+            });
+            
+            propertyDetailsHTML += `
+                        </div>
+                    </div>
+                    
+                    <div class="property-price-highlight">
+                        <div class="property-price-main">${property.price}</div>
+                        <div class="property-price-unit">${property.pricePerSqft} (Negotiable)</div>
+                        <div class="property-price-details">
+                            <div class="property-price-item"><i class="fas fa-ruler-combined"></i> Carpet Area: ${property.carpetArea}</div>
+                            <div class="property-price-item"><i class="fas fa-building"></i> Floor: ${property.floor}</div>
+                            <div class="property-price-item"><i class="fas fa-compass"></i> Facing: ${property.facing}</div>
+                            <div class="property-price-item"><i class="fas fa-calendar-alt"></i> Property Age: ${property.propertyAge}</div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 style="margin-bottom: 15px; color: #1a3a5f;">Property Overview</h3>
+                        <div class="property-details-grid">
+                            <div class="property-detail-item">
+                                <span class="property-detail-label">Transaction Type</span>
+                                <span class="property-detail-value">${property.transactionType}</span>
+                            </div>
+                            <div class="property-detail-item">
+                                <span class="property-detail-label">Furnishing</span>
+                                <span class="property-detail-value">${property.furnishing}</span>
+                            </div>
+                            <div class="property-detail-item">
+                                <span class="property-detail-label">Parking</span>
+                                <span class="property-detail-value">${property.parking}</span>
+                            </div>
+                            <div class="property-detail-item">
+                                <span class="property-detail-label">Power Backup</span>
+                                <span class="property-detail-value">${property.powerBackup}</span>
+                            </div>
+                            <div class="property-detail-item">
+                                <span class="property-detail-label">Property Ownership</span>
+                                <span class="property-detail-value">${property.propertyOwnership}</span>
+                            </div>
+                            <div class="property-detail-item">
+                                <span class="property-detail-label">Road Width</span>
+                                <span class="property-detail-value">${property.roadWidth}</span>
+                            </div>
+                            <div class="property-detail-item">
+                                <span class="property-detail-label">WheelChair Friendly</span>
+                                <span class="property-detail-value">${property.wheelchairFriendly}</span>
+                            </div>
+                            <div class="property-detail-item">
+                                <span class="property-detail-label">Gated Community</span>
+                                <span class="property-detail-value">${property.gatedCommunity}</span>
+                            </div>
+                            <div class="property-detail-item">
+                                <span class="property-detail-label">Pet Friendly</span>
+                                <span class="property-detail-value">${property.petFriendly}</span>
+                            </div>
+                            <div class="property-detail-item">
+                                <span class="property-detail-label">Flooring</span>
+                                <span class="property-detail-value">${property.flooring}</span>
+                            </div>
+                            <div class="property-detail-item">
+                                <span class="property-detail-label">Corner Property</span>
+                                <span class="property-detail-value">${property.cornerProperty}</span>
+                            </div>
+                            <div class="property-detail-item">
+                                <span class="property-detail-label">Water Source</span>
+                                <span class="property-detail-value">${property.waterSource}</span>
+                            </div>
+                            <div class="property-detail-item">
+                                <span class="property-detail-label">Overlooking</span>
+                                <span class="property-detail-value">${property.overlooking}</span>
+                            </div>
+                            <div class="property-detail-item">
+                                <span class="property-detail-label">Configuration</span>
+                                <span class="property-detail-value">${property.configuration}</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 style="margin-bottom: 15px; color: #1a3a5f;">Property Features</h3>
+                        <div class="property-features-list">
+            `;
+            
+            // Add features
+            if (property.features && property.features.length > 0) {
+                property.features.forEach(feature => {
+                    propertyDetailsHTML += `
+                        <div class="property-feature-item available">
+                            <i class="fas fa-check-circle"></i>
+                            <span>${feature}</span>
+                        </div>
+                    `;
+                });
+            } else {
+                propertyDetailsHTML += `<p>No specific features listed.</p>`;
+            }
+            
+            propertyDetailsHTML += `
+                        </div>
+                    </div>
+                    
+                    <div class="property-why-consider">
+                        <h3 style="margin-bottom: 15px; color: #1a3a5f;">Why You Should Consider This Property</h3>
+                        <div class="property-consider-list">
+            `;
+            
+            // Add why consider points
+            if (property.whyConsider && property.whyConsider.length > 0) {
+                property.whyConsider.forEach(point => {
+                    propertyDetailsHTML += `
+                        <div class="property-consider-item">
+                            <i class="fas fa-check"></i>
+                            <div>${point}</div>
+                        </div>
+                    `;
+                });
+            } else {
+                propertyDetailsHTML += `<p>This property offers excellent value for money in a prime location.</p>`;
+            }
+            
+            propertyDetailsHTML += `
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 style="margin-bottom: 15px; color: #1a3a5f;">About Property</h3>
+                        <p style="color: #4a5568; line-height: 1.8;">
+                            ${property.address}
+                        </p>
+                        <p style="color: #4a5568; line-height: 1.8; margin-top: 10px;">
+                            Property Code: ${property.propertyCode}
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="property-dealer-info">
+                    <h3 style="margin-bottom: 15px; color: #1a3a5f;">Dealer Details</h3>
+                    <div class="property-dealer-name">${property.dealerName}</div>
+                    <p>Verified Property Broker</p>
+                    
+                    <div class="property-dealer-stats">
+                        <div class="property-stat-item">
+                            <div class="property-stat-value">${property.dealerProperties}</div>
+                            <div class="property-stat-label">Properties Listed</div>
+                        </div>
+                        <div class="property-stat-item">
+                            <div class="property-stat-value">${property.dealerVerified}</div>
+                            <div class="property-stat-label">Verified Properties</div>
+                        </div>
+                    </div>
+                    
+                    <p><i class="fas fa-map-marker-alt"></i> <strong>Address:</strong> ${property.dealerAddress}</p>
+                    <p><i class="fas fa-map-pin"></i> <strong>Localities:</strong> ${property.dealerLocalities}</p>
+                    
+                    <div style="margin-top: 20px;">
+                        <button class="property-btn-submit" onclick="callDealer('${property.dealerName}')" style="margin-bottom: 15px;">
+                            <i class="fas fa-phone-alt"></i> Call Dealer
+                        </button>
+                    </div>
+                    
+                    <div class="property-enquiry-form">
+                        <h4 style="margin: 25px 0 15px; color: #1a3a5f;">Send enquiry to Dealer</h4>
+                        
+                        <form id="propertyEnquiryForm${property.id}">
+                            <div class="property-select-group">
+                                <select class="property-form-control" id="userType${property.id}">
+                                    <option value="individual">You are Individual</option>
+                                    <option value="agent">You are Agent</option>
+                                    <option value="builder">You are Builder</option>
+                                </select>
+                                <select class="property-form-control" id="enquiryReason${property.id}">
+                                    <option value="investment">Reason: Investment</option>
+                                    <option value="self_use">Reason: Self Use</option>
+                                    <option value="rental">Reason: Rental</option>
+                                </select>
+                            </div>
+                            
+                            <div class="property-form-group">
+                                <label for="propertyName${property.id}">Name</label>
+                                <input type="text" id="propertyName${property.id}" class="property-form-control" placeholder="Your name" required>
+                            </div>
+                            
+                            <div class="property-form-group">
+                                <label for="propertyPhone${property.id}">Phone Number</label>
+                                <div style="display: flex;">
+                                    <select class="property-form-control" id="phoneCode${property.id}" style="flex: 0 0 100px; border-right: none; border-radius: 6px 0 0 6px;">
+                                        <option value="+91">IND (+91)</option>
+                                        <option value="+1">USA (+1)</option>
+                                        <option value="+44">UK (+44)</option>
+                                    </select>
+                                    <input type="tel" id="propertyPhone${property.id}" class="property-form-control" placeholder="Phone number" style="border-radius: 0 6px 6px 0;" required>
+                                </div>
+                            </div>
+                            
+                            <div class="property-form-group">
+                                <label for="propertyEmail${property.id}">Email Address</label>
+                                <input type="email" id="propertyEmail${property.id}" class="property-form-control" placeholder="Your email address">
+                            </div>
+                            
+                            <div class="property-form-group">
+                                <label for="propertyMessage${property.id}">Message</label>
+                                <textarea id="propertyMessage${property.id}" class="property-form-control" rows="3" placeholder="I am interested in this Property." required>I am interested in "${property.title}" at ${property.location}. Please contact me with more details.</textarea>
+                            </div>
+                            
+                            <div class="property-checkbox">
+                                <input type="checkbox" id="propertyTerms${property.id}" required>
+                                <label for="propertyTerms${property.id}">I agree to the Terms & Conditions and Privacy Policy</label>
+                            </div>
+                            
+                            <button type="submit" class="property-btn-submit">
+                                <i class="fas fa-paper-plane"></i> Send Email & SMS to Dealer
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            `;
+            
+            propertyModalContent.innerHTML = propertyDetailsHTML;
+            
+            // Pre-fill form with user data if logged in
+            if (currentUser) {
+                const nameField = document.getElementById(`propertyName${property.id}`);
+                const emailField = document.getElementById(`propertyEmail${property.id}`);
+                const phoneField = document.getElementById(`propertyPhone${property.id}`);
+                
+                if (nameField) nameField.value = `${currentUser.first_name} ${currentUser.last_name}`;
+                if (emailField) emailField.value = currentUser.email;
+                if (phoneField) phoneField.value = currentUser.phone || '';
+            }
+            
+            // Add event listener to the enquiry form
+            const enquiryForm = document.getElementById(`propertyEnquiryForm${property.id}`);
+            if (enquiryForm) {
+                enquiryForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    submitPropertyEnquiry(property);
+                });
+            }
+            
+            // Show the modal
+            propertyModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Function to change property image
+        window.changePropertyImage = function(index, imageSrc) {
+            const mainImage = document.getElementById('mainPropertyImage');
+            const thumbnails = document.querySelectorAll('.property-thumbnail');
+            
+            // Update main image
+            mainImage.src = imageSrc;
+            
+            // Update active thumbnail
+            thumbnails.forEach(thumb => thumb.classList.remove('active'));
+            thumbnails[index].classList.add('active');
+            
+            currentImageIndex = index;
+        };
+
+        // Function to call dealer
+        window.callDealer = function(dealerName) {
+            alert(`Calling ${dealerName}...\nPhone: +91 98765 43210\nThis is a demo. In a real application, this would connect to the dealer's phone.`);
+        };
+
+        // Submit property enquiry
+        function submitPropertyEnquiry(property) {
+            const enquiryForm = document.getElementById(`propertyEnquiryForm${property.id}`);
+            if (!enquiryForm) return;
+            
+            const name = document.getElementById(`propertyName${property.id}`).value;
+            const phone = document.getElementById(`propertyPhone${property.id}`).value;
+            const phoneCode = document.getElementById(`phoneCode${property.id}`).value;
+            const email = document.getElementById(`propertyEmail${property.id}`).value;
+            const message = document.getElementById(`propertyMessage${property.id}`).value;
+            const userType = document.getElementById(`userType${property.id}`).value;
+            const enquiryReason = document.getElementById(`enquiryReason${property.id}`).value;
+            
+            // Validate form
+            if (!name || !phone || !message) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            // Show loading state
+            const submitBtn = enquiryForm.querySelector('.property-btn-submit');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitBtn.disabled = true;
+            
+            // Prepare data for API
+            const enquiryData = {
+                property_id: property.id,
+                property_title: property.title,
+                dealer_name: property.dealerName,
+                enquirer_name: name,
+                phone_code: phoneCode,
+                phone_number: phone,
+                email: email,
+                user_type: userType,
+                enquiry_reason: enquiryReason,
+                message: message
+            };
+            
+            // Send enquiry to PHP API
+            fetch(`${API_BASE_URL}enquiry.php`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(enquiryData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message === "Enquiry submitted successfully.") {
+                    alert(`Thank you ${name}! Your enquiry for "${property.title}" has been sent to ${property.dealerName}. They will contact you at ${phone} shortly.`);
+                    
+                    // Reset form
+                    enquiryForm.reset();
+                } else {
+                    alert('Failed to submit enquiry. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to submit enquiry. Please try again.');
+            })
+            .finally(() => {
+                // Reset button state
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            });
+        }
+
+        // Close property modal
+        closePropertyModal.addEventListener('click', () => {
+            propertyModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+
+        // Close builder modal
+        closeBuilderModal.addEventListener('click', () => {
+            builderModal.style.display = 'none';
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === propertyModal) {
+                propertyModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+            if (e.target === builderModal) {
+                builderModal.style.display = 'none';
+            }
+            if (e.target === loginModal) {
+                loginModal.style.display = 'none';
+            }
+            if (e.target === registerModal) {
+                registerModal.style.display = 'none';
+            }
+        });
+
+        // Filter properties by category
+        function filterPropertiesByCategory(category) {
+            currentCategory = category;
+            
+            // Update category card active state
+            categoryCards.forEach(card => {
+                if (card.getAttribute('data-category') === category) {
+                    card.classList.add('active');
+                } else {
+                    card.classList.remove('active');
+                }
+            });
+            
+            let filteredProperties;
+            if (category === 'all') {
+                filteredProperties = getPropertiesToUse();
+            } else {
+                filteredProperties = getPropertiesToUse().filter(property => property.category === category);
+            }
+            
+            renderProperties(filteredProperties.slice(0, 9));
+        }
+
+        // Category cards click event
+        categoryCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const category = this.getAttribute('data-category');
+                filterPropertiesByCategory(category);
+                
+                // Update nav links
+                navLinks.forEach(link => {
+                    if (link.getAttribute('data-category') === category) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+            });
+        });
+
+        // Modal functionality
+        loginBtn.addEventListener('click', () => {
+            loginModal.style.display = 'flex';
+        });
+
+        registerBtn.addEventListener('click', () => {
+            registerModal.style.display = 'flex';
+        });
+
+        showRegister.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginModal.style.display = 'none';
+            registerModal.style.display = 'flex';
+        });
+
+        showLogin.addEventListener('click', (e) => {
+            e.preventDefault();
+            registerModal.style.display = 'none';
+            loginModal.style.display = 'flex';
+        });
+
+        closeModalBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                loginModal.style.display = 'none';
+                registerModal.style.display = 'none';
+            });
+        });
+
+        // Login form submission
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            if (email && password) {
+                // Show loading state
+                const submitBtn = loginForm.querySelector('.submit-btn');
+                const originalText = submitBtn.textContent;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Logging in...';
+                submitBtn.disabled = true;
+                
+                // Send login request to PHP API
+                fetch(`${API_BASE_URL}login.php`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        password: password
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.message === "Login successful.") {
+                        alert(`Login successful! Welcome ${data.user.full_name}!`);
+                        loginModal.style.display = 'none';
+                        loginForm.reset();
+                        
+                        // Store user session
+                        currentUser = data.user;
+                        localStorage.setItem('userSession', JSON.stringify(data.user));
+                        
+                        // Update UI to show logged in state
+                        updateLoginUI(data.user);
+                    } else {
+                        alert(data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Login failed. Please try again.');
+                })
+                .finally(() => {
+                    // Reset button state
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                });
+            } else {
+                alert('Please fill in all fields');
+            }
+        });
+
+        // Registration form submission
+        registerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            const phone = document.getElementById('phone').value;
+            
+            if (firstName && lastName && email && password && phone) {
+                // Show loading state
+                const submitBtn = registerForm.querySelector('.submit-btn');
+                const originalText = submitBtn.textContent;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating account...';
+                submitBtn.disabled = true;
+                
+                // Send registration request to PHP API
+                fetch(`${API_BASE_URL}register.php`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        first_name: firstName,
+                        last_name: lastName,
+                        email: email,
+                        password: password,
+                        phone: phone
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.message === "User registered successfully.") {
+                        alert(`Registration successful! Welcome ${data.name}!`);
+                        registerModal.style.display = 'none';
+                        registerForm.reset();
+                        
+                        // Auto-login after registration
+                        return fetch(`${API_BASE_URL}login.php`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                email: email,
+                                password: password
+                            })
+                        });
+                    } else {
+                        alert(data.message);
+                        throw new Error('Registration failed');
+                    }
+                })
+                .then(response => response.json())
+                .then(loginData => {
+                    if (loginData.message === "Login successful.") {
+                        // Store user session
+                        currentUser = loginData.user;
+                        localStorage.setItem('userSession', JSON.stringify(loginData.user));
+                        
+                        // Update UI
+                        updateLoginUI(loginData.user);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Registration failed. Please try again.');
+                })
+                .finally(() => {
+                    // Reset button state
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                });
+            } else {
+                alert('Please fill in all fields');
+            }
+        });
+
+        // Search functionality
+        searchForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const location = document.getElementById('location').value.toLowerCase();
+            const propertyType = document.getElementById('property-type').value;
+            const budget = document.getElementById('budget').value;
+            
+            let filteredProperties = getPropertiesToUse();
+            
+            // Filter by category first
+            if (currentCategory !== 'all') {
+                filteredProperties = filteredProperties.filter(property => 
+                    property.category === currentCategory
+                );
+            }
+            
+            // Filter by location
+            if (location) {
+                filteredProperties = filteredProperties.filter(property => 
+                    property.location.toLowerCase().includes(location) || 
+                    property.title.toLowerCase().includes(location)
+                );
+            }
+            
+            // Filter by property type
+            if (propertyType) {
+                if (propertyType === 'apartment' || propertyType === 'villa') {
+                    filteredProperties = filteredProperties.filter(property => 
+                        property.title.toLowerCase().includes(propertyType)
+                    );
+                } else if (propertyType === 'plot') {
+                    filteredProperties = filteredProperties.filter(property => 
+                        property.bedrooms === 'Plot'
+                    );
+                } else if (propertyType === 'commercial') {
+                    filteredProperties = filteredProperties.filter(property => 
+                        property.bedrooms === 'Office Space'
+                    );
+                }
+            }
+            
+            // Filter by budget (simplified logic)
+            if (budget) {
+                filteredProperties = filteredProperties.filter(property => {
+                    const price = property.price;
+                    if (budget === '0-50' && price.includes('Lakhs')) return true;
+                    if (budget === '50-100' && (price.includes('Cr') || price.includes('Lakhs'))) {
+                        const priceNum = parseFloat(price.replace(/[^0-9.]/g, ''));
+                        return priceNum >= 50 && priceNum <= 100;
+                    }
+                    if (budget === '100-200' && price.includes('Cr')) {
+                        const priceNum = parseFloat(price.replace(/[^0-9.]/g, ''));
+                        return priceNum >= 1 && priceNum <= 2;
+                    }
+                    if (budget === '200+' && price.includes('Cr')) {
+                        const priceNum = parseFloat(price.replace(/[^0-9.]/g, ''));
+                        return priceNum > 2;
+                    }
+                    return false;
+                });
+            }
+            
+            renderProperties(filteredProperties.slice(0, 9));
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const nav = document.querySelector('nav ul');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            const isVisible = nav.style.display === 'flex';
+            nav.style.display = isVisible ? 'none' : 'flex';
+            
+            if (!isVisible) {
+                nav.style.display = 'flex';
+                nav.style.flexDirection = 'column';
+                nav.style.position = 'absolute';
+                nav.style.top = '100%';
+                nav.style.left = '0';
+                nav.style.right = '0';
+                nav.style.backgroundColor = 'white';
+                nav.style.padding = '20px';
+                nav.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+                nav.style.gap = '15px';
+            } else {
+                nav.style.display = 'none';
+            }
+        });
+
+        // Adjust navigation on window resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                nav.style.display = '';
+            } else {
+                nav.style.display = 'none';
+            }
+        });
+
+        // Refresh properties button (for debugging)
+        window.refreshProperties = function() {
+            fetchProperties();
+        };
+    </script>
+</body>
+</html>
